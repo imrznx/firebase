@@ -1,0 +1,40 @@
+---
+layout: new
+title: {{ data[0] }}
+date: {{ data[1] }}
+categories: {{ data[2] }}
+description: {{ data[3] }}
+tags: {{ data[4] | join: ' ' }}
+image: {{ data[5] }}
+---
+<div class="project-content">
+    <div class="project-head">
+        <span class="project-label">{{ data[2] }}</span>
+        <h1 class="project-title">{{ data[0] }}</h1>
+        <p class="project-description">{{ data[3] }}</p>
+    </div>
+    <h2 id="the-power-of-visual-storytelling">{{ data[6] }}</h2>
+    {% for data in data[7] | json_parse %}
+    <p>{{ data }}</p>
+    {% endfor %}
+    <div class="gallery-box">
+        <div class="gallery">
+            {% for data in data[8] | json_parse %}
+            <img src="{{ data }}" loading="lazy" alt="Project">
+            {% endfor %}
+        </div>
+    </div>
+    {% for data in data[9] | json_parse %}
+    <p>{{ data }}</p>
+    {% endfor %}
+    <div class="gallery-box">
+        <div class="gallery">
+            {% for data in data[10] | json_parse %}
+            <img src="{{ data }}" loading="lazy" alt="Project">
+            {% endfor %}
+        </div>
+    </div>
+    {% for data in data[11] | json_parse %}
+    <p>{{ data }}</p>
+    {% endfor %}
+</div>

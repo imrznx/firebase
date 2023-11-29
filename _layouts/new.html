@@ -1,0 +1,63 @@
+---
+layout: default
+---
+<!-- begin content -->
+<main class="content" aria-label="Content">
+    <div class="container">
+        <div class="project-image">
+            <img class="lazy" data-src="{{ data[5] }}" alt="Balancing Innovation and Responsibility">
+        </div>
+        {{ content }}
+    </div>
+    <section class="section project-nav">
+        <div class="container">
+            <div class="row">
+                <div class="col col-12">
+                    <h2 class="section__title">Next work</h2>
+                </div>
+            </div>
+        </div>
+        <article class="project">
+            <div class="project__content">
+                <div class="project__info">
+                    <div class="container">
+                        {% assign current_post_index = 0 %}
+                        {% for post in site.posts %}
+                        {% if post.url == page.url %}
+                            {% assign current_post_index = forloop.index %}
+                        {% endif %}
+                        {% endfor %}
+
+                        {% assign next_post = site.posts[current_post_index] %}
+
+                        {% if next_post %}
+                        <div class="row">
+                            <div class="project__info__left col col-6 col-d-12">
+                            <div class="project__meta">
+                                <span class="project__label">{{ next_post.category | replace: '-', ' ' }}</span>
+                                <h3 class="project__title"><a href="{{ site.url }}{{ next_post.url }}">{{ next_post.title }}</a></h3>
+                                <p class="project__description">{{ next_post.description }}</p>
+                                <div class="article-tags__box">
+                                {% for tag in next_post.tags %}
+                                    <a href="{{ site.url }}/tag/{{ tag }}" class="article__tag">{{ tag }}</a>
+                                {% endfor %}
+                                </div>
+                            </div>
+                            </div>
+                            <div class="project__info__right col col-6 col-d-12">
+                            <div class="project__image">
+                                <img class="lazy" data-src="{{ next_post.image }}" alt="{{ next_post.title }}">
+                            </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </article>
+    </section>
+    <!-- begin section-gallery -->
+    {% include gallery.html %}
+    <!-- end section-gallery -->
+</main>
+<!-- end content -->
